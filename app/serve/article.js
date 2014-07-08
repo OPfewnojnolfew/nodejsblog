@@ -11,7 +11,13 @@ function getArticle(response, postData) {
             response.writeHead(200, {
                 'Content-Type': 'text/plain'
             });
-            response.write(items);
+            response.write(JSON.stringify({
+                code: '200',
+                message: '查询成功',
+                data: {
+                    articleList: items
+                }
+            }));
             response.end();
         });
     });
@@ -32,8 +38,7 @@ function addArticle(response, postData) {
             response.write(JSON.stringify({
                 code: '200',
                 message: '新增成功',
-                data: {
-                }
+                data: {}
             }));
             response.end();
         });

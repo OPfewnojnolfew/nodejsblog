@@ -6,7 +6,10 @@ define(function(require, exports, module) {
         },
         addArticle: function(param, callback) {
             $.post('/serve/addArticle', param, callback);
-        }
+        },
+        loadTemplate: function(callback) {
+            $.get('/assets/inc/articleTemplate.html', callback);
+        },
     });
     module.exports = ArticleModel;
 });
