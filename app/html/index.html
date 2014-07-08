@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <title>首页</title>
+</head>
+
+<body>
+    <div>
+        <label for="title">标题</label>
+        <input type="text" id="title" />
+        <label for="content">内容</label>
+        <input type="text" id="content" />
+        <a href="javascript:void(0)" id="submit">提交</a>
+    </div>
+</body>
+<script type="text/javascript" src="/assets/scripts/lib/sea.js" id="sea"></script>
+<script type="text/javascript" src="/assets/scripts/blog/articleConfig.js"></script>
+<script type="text/javascript">
+seajs.use('jquery');
+seajs.use('mootools');
+seajs.use('articleCreator', function(creator) {
+    creator.init();
+});
+</script>
+
+</html>
