@@ -1,12 +1,13 @@
-function route(handle, pathname, response, postData) {
+function route(handle, pathname, context) {
     if (typeof handle[pathname] === 'function') {
-        handle[pathname](response, postData);
+        handle[pathname].apply(context);
     } else {
-        response.writeHead(404, {
+        context.response.writeHead(404, {
             'Content-Type': 'text/plain'
         });
-        response.write('404 Not found');
-        response.end();
+        context.response.write('404 Not found');
+        context.response.write('404 Not found');
+        context.response.end();
     }
 }
 

@@ -1,46 +1,26 @@
-var http = require('http');
-var MongoClient = require('mongodb').MongoClient;
+var http = require('http'),
+    mongodbHelper = require('./mongodbHelper');
 
-function getArticle(response, postData) {
-    MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
-        if (err) {
-            return console.dir(err);
-        }
-        var collection = db.collection('article');
-        collection.find().toArray(function(err, items) {
-            response.writeHead(200, {
-                'Content-Type': 'text/plain'
-            });
-            response.write(JSON.stringify({
-                code: '200',
-                message: '查询成功',
-                data: {
-                    articleList: items
-                }
-            }));
-            response.end();
+function getArticle() {
+    var that = this;
+    mongodbHelper.query('article', function(res) {
+        that.send({
+            code: '200',
+            message: '查询成功',
+            data: {
+                articleList: res
+            }
         });
     });
 }
 
-function addArticle(response, postData) {
-    MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
-        if (err) {
-            return console.dir(err);
-        }
-        var collection = db.collection('article');
-        collection.insert(postData, {
-            w: 1
-        }, function(err, result) {
-            response.writeHead(200, {
-                'Content-Type': 'text/plain'
-            });
-            response.write(JSON.stringify({
-                code: '200',
-                message: '新增成功',
-                data: {}
-            }));
-            response.end();
+function addArticle() {
+    var that = this;
+    mongodbHelper.insert('article', this.request.postData, function() {
+        that.send({
+            code: '200',
+            message: '新增成功',
+            data: {}
         });
     });
 }
