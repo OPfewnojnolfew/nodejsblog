@@ -5,7 +5,7 @@ define(function(require, exports, module) {
             $.get('/serve/getArticle', callback);
         },
         addArticle: function(param, callback) {
-            $.get('/serve/addArticle', param, callback);
+            $.post('/serve/addArticle', param, callback);
         }
     });
     module.exports = ArticleModel;
