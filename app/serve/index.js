@@ -1,9 +1,9 @@
 var server = require('./server');
 var router = require('./router');
-var article = require('./article');
+var article = require('./article/articleController');
 
 var handle = {};
-handle['/serve/getArticle'] = article.getArticle;
+handle['/serve/getArticles'] = article.getArticles;
 handle['/serve/addArticle'] = article.addArticle;
 server.start(router.route, handle);
 

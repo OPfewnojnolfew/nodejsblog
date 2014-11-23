@@ -1,15 +1,19 @@
 define(function(require, exports, module) {
-    var ArticleModel = new Class({
-        initialize: function(options) {},
-        getArticle: function(callback) {
-            $.get('/serve/getArticle', callback);
+    var URLS = {
+        GET_ARTICLES: '/serve/getArticles'
+    };
+    var Model = {
+        _ajax: function(url, data, type) {
+            return $.ajax({
+                url: url,
+                dataType: 'json',
+                type: type || 'get',
+                data: data || {}
+            });
         },
-        addArticle: function(param, callback) {
-            $.post('/serve/addArticle', param, callback);
-        },
-        loadTemplate: function(callback) {
-            $.get('/assets/inc/articleTemplate.html', callback);
-        },
-    });
-    module.exports = ArticleModel;
+        getArticles: function(param) {
+            return this._ajax(URLS.GET_ARTICLES, param);
+        }
+    };
+    module.exports = Model;
 });

@@ -1,34 +1,49 @@
+/**
+ * 文章视图
+ * @param  {[type]} require
+ * @param  {[type]} exports
+ * @param  {[type]} module
+ * @return {[type]}
+ */
 define(function(require, exports, module) {
-    var AnalyzeView = new Class({
-        Implements: [Events, Options],
-        initialize: function(options) {
-            var that = this;
-            this.controller = options.controller;
-            this.bindEvents();
-            this.getArticle();
+    //模板地址
+    var templates = {
+        LIST: '/assets/scripts/blog/template/list.html'
+    };
+    var template = require('modules/template');
+    var AnalyzeView = function(events) {
+        if (events) {
+            var item;
+            for (item in events) {
+                if (events.hasOwnProperty(item)) {
+                    (function(item) {
+                        PubSub.subscribe(item, function(msg, data) {
+                            events[item](data);
+                        });
+                    })(item);
+                }
+            }
+        }
+    };
+    AnalyzeView.prototype = {
+        init: function() {
+
         },
-        getArticle: function() {
-            var that = this;
-            this.controller.getArticle(function(res) {
-                var $result = $(that.controller.templateObj({
-                    'articleList': res.data.articleList
+        /**
+         * 展示文章列表
+         * @param  {[type]} res
+         * @return {[type]}
+         */
+        renderArticles: function(res) {
+            template.loadTemplate(templates.LIST).then(function(tpl) {
+                $('.article-container').html(tpl({
+                    articles: res.articles
                 }));
-                $('#articleList').html($result);
             });
         },
         bindEvents: function() {
-            var that = this;
-            $('#submit').on('click', function() {
-                var title = $('#title').val(),
-                    content = $('#content').val();
-                that.controller.addArticle({
-                    title: title,
-                    content: content
-                }, function() {
-                    alert('yes');
-                });
-            });
+
         }
-    });
+    };
     module.exports = AnalyzeView;
 });

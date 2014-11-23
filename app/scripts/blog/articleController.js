@@ -1,36 +1,41 @@
+/**
+ * 文章控制器
+ * @param  {[type]} require
+ * @param  {[type]} exports
+ * @param  {[type]} module
+ * @return {[type]}
+ */
 define(function(require, exports, module) {
-    var ArticleController = new Class({
-        initialize: function(options) {
-            this.pageIndex = 1;
-            this.pageSize = 10;
-            this.model = options.model;
-            this.templateObj = null;
+    var View = require('./ArticleView'),
+        model = require('./ArticleModel'),
+        view;
+    var ArticleController = function() {};
+    ArticleController.prototype = {
+        init: function() {
+            var self = this;
+            view = new View({
+                'article.getArticles': function(param) {
+                    self.getArticles(param);
+                },
+                'article.getArticle': function(id) {
+                    self.getArticle(id);
+                }
+            });
+            this.getArticles();
+        },
+        /**
+         * 根据条件获取文章列表
+         * @param  {[type]} param
+         * @return {[type]}
+         */
+        getArticles: function(param) {
+            model.getArticles(param).then(function(res) {
+                view && view.renderArticles(res);
+            });
+        },
+        getArticle: function(id) {
 
-        },
-        getArticle: function(callback) {
-            var that = this;
-            this.model.getArticle(function(res) {
-                that.loadTemplate(function() {
-                    callback(JSON.parse(res));
-                });
-            });
-        },
-        addArticle: function(param, callback) {
-            this.model.addArticle(param, function() {
-                callback();
-            });
-        },
-        loadTemplate: function(callback) {
-            var that = this;
-            if (this.templateObj) {
-                callback(that.templateObj);
-            } else {
-                this.model.loadTemplate(function(tem) {
-                    that.templateObj = Handlebars.compile(tem);
-                    callback(that.templateObj);
-                });
-            }
-        },
-    });
+        }
+    };
     module.exports = ArticleController;
 });

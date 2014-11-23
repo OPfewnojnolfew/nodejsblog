@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="utf-8" />
     <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="/assets/styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/base.css">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/article.css">
 </head>
 
 <body>
-    <div>
-        <label for="title">标题</label>
-        <input type="text" id="title" />
-        <label for="content">内容</label>
-        <input type="text" id="content" />
-        <a href="javascript:void(0)" id="submit">提交</a>
+    <div class="wrapper">
+        <div class="header"></div>
+        <div class="content">
+            <div class="primary">
+                <div class="article-container"></div>
+            </div>
+            <div class="secondary">
+                <div class="author-info">
+                    <img src="" class="info-pic">
+                    <div class="info-des">
+                        <span>xxxxxx</span>
+                        <br/>
+                        <span>xxxxxx</span>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer"></div>
     </div>
-    <ul id="articleList"></ul>
 </body>
 <script type="text/javascript" src="/assets/scripts/lib/sea.js" id="sea"></script>
-<script type="text/javascript" src="/assets/scripts/blog/articleConfig.js"></script>
+<script type="text/javascript" src="/assets/scripts/config.js"></script>
 <script type="text/javascript">
 seajs.use('jquery');
-seajs.use('mootools');
 seajs.use('json');
 seajs.use('handlebars');
-seajs.use('articleCreator', function(creator) {
-    creator.init();
-});
+seajs.use('/assets/scripts/lib/pubsub');
+seajs.use('/assets/scripts/blog/articleMain');
 </script>
 
 </html>

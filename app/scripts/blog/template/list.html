@@ -1,0 +1,20 @@
+{{!--{{#each articles}}
+<div class="article-item">
+    <h2><a href="javascript:void(0)">{{this.title}}</a></h2>
+    <div class="article-content">{{this.content}}</div>
+    <div class="article-footer">
+        <span>2014-11-21 18:03:23</span>
+        <span>ace</span>
+    </div>
+</div>
+{{/each}}--}} {{#each articles}}
+<div class="media">
+    <a class="media-left media-middle" href="#">
+        <img src="/assets/images/test.jpg" alt="..." style="width:100px;height:50px;">
+    </a>
+    <div class="media-body">
+        <h3 class="media-heading"><a href="javascript:void(0)">{{this.title}}</a></h3>
+        <p>{{this.content}}</p>
+    </div>
+</div>
+{{/each}}

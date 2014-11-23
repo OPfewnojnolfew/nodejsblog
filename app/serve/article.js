@@ -2,9 +2,9 @@ var http = require('http'),
     mongodbHelper = require('./mongodbHelper');
 
 function getArticle() {
-    var that = this;
+    var self = this;
     mongodbHelper.query('article', function(res) {
-        that.send({
+        self.send({
             code: '200',
             message: '查询成功',
             data: {
@@ -15,9 +15,9 @@ function getArticle() {
 }
 
 function addArticle() {
-    var that = this;
+    var self = this;
     mongodbHelper.insert('article', this.request.postData, function() {
-        that.send({
+        self.send({
             code: '200',
             message: '新增成功',
             data: {}
