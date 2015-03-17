@@ -1,9 +1,13 @@
 body {
-    font-family: 'Microsoft YaHei';
-    font-size: 12px;
-    background: #e9e9e9;
+    font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #333;
+    background: url(../images/body_bg.jpg) repeat center top;
 }
 .wrapper {
+    width: 100%;
+}
+.w {
+    position: relative;
     width: 1200px;
     margin: 0 auto;
 }
