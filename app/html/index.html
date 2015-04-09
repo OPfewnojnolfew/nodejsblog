@@ -39,6 +39,9 @@ seajs.use('jquery');
 seajs.use('json');
 seajs.use('handlebars');
 seajs.use('/assets/scripts/lib/pubsub');
+seajs.use('/assets/scripts/lib/underscore', function() {
+    seajs.use('/assets/scripts/lib/backbone');
+});
 seajs.use('/assets/scripts/blog/articleMain');
 </script>
 

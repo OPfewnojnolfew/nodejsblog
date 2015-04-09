@@ -1,19 +1,4 @@
 define(function(require, exports, module) {
-    var URLS = {
-        GET_ARTICLES: '/serve/getArticles'
-    };
-    var Model = {
-        _ajax: function(url, data, type) {
-            return $.ajax({
-                url: url,
-                dataType: 'json',
-                type: type || 'get',
-                data: data || {}
-            });
-        },
-        getArticles: function(param) {
-            return this._ajax(URLS.GET_ARTICLES, param);
-        }
-    };
+    var Model = Backbone.Model.extend({});
     module.exports = Model;
 });

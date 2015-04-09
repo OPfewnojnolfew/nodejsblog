@@ -7,7 +7,7 @@
  */
 define(function(require, exports, module) {
     var View = require('./ArticleView'),
-        model = require('./ArticleModel'),
+        model = require('./ArticleCollection'),
         view;
     var ArticleController = function() {};
     ArticleController.prototype = {

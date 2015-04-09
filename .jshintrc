@@ -29,6 +29,7 @@
         "Handlebars": true,
         "VimMap": true,
         "art": true,
-        "notify":true
+        "notify": true,
+        "Backbone": true
     }
 }
