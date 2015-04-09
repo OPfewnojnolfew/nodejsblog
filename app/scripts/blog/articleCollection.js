@@ -2,7 +2,7 @@ define(function(require, exports, module) {
     var URLS = {
             GET_ARTICLES: '/serve/getArticles'
         },
-        Model = require('./articelModel');
+        Model = require('./articleModel');
     var Collection = Backbone.Collection.extend({
         model: Model,
         _ajax: function(url, data, type) {
@@ -12,6 +12,9 @@ define(function(require, exports, module) {
                 type: type || 'get',
                 data: data || {}
             });
+        },
+        initialize: function() {
+            this.models = [];
         },
         getArticles: function(param) {
             var self = this;

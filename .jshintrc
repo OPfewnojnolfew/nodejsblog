@@ -30,6 +30,7 @@
         "VimMap": true,
         "art": true,
         "notify": true,
-        "Backbone": true
+        "Backbone": true,
+        "_":true
     }
 }
