@@ -30,9 +30,9 @@ define(function(require, exports, module) {
         // a one-to-one correspondence between a **Todo** and a **TodoView** in this
         // app, we set a direct reference on the model for convenience.
         initialize: function() {
-            this.listenTo(collection, 'add', this.render);
+            this.listenTo(collection, 'all', this.render);
             $('.primary').html(this.$el);
-            collection.add({});
+            collection.fetch();
         },
 
         // Re-render the titles of the todo item.
