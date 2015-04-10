@@ -16,21 +16,35 @@
 var http = require('http');
 var express = require('express');
 var app = express();
-var MongoClient = require('mongodb').MongoClient;
-var router = express.Router();
+// var MongoClient = require('mongodb').MongoClient;
+var mongodbHelper = require('./mongodbHelper');
+// var router = express.Router();
 
-router.route('/articles/:user_id')
-    .all(function(req, res, next) {
-        // runs for all HTTP verbs first
-        // think of it as route specific middleware!
-    })
-    .get(function(req, res, next) {
-        return [{
-            'id': '1',
-            'name': 'ace'
-        }];
+// router.route('/serve/articles')
+//     .all(function(req, res, next) {
+//         // runs for all HTTP verbs first
+//         // think of it as route specific middleware!
+//     })
+//     .get(function(req, res, next) {
+//         return [{
+//             'id': '1',
+//             'name': 'ace'
+//         }];
+//     });
+
+app.get('/serve/articles', function(req, res) {
+    var self = this;
+    mongodbHelper.query('article', function(res1) {
+    	res.send(res1);
+        // res.send({
+  //     code: '200',
+  //     message: '查询成功',
+  //     articles: res1
+  // });
+
+
     });
-
+});
 // app.get('/serve/getArticle', function(req, res) {
 //     MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
 //         if (err) {
