@@ -34,13 +34,14 @@ var mongodbHelper = require('./mongodbHelper');
 
 app.get('/serve/articles', function(req, res) {
     var self = this;
+    var id = req.query.id;
     mongodbHelper.query('article', function(res1) {
-    	res.send(res1);
-        // res.send({
-  //     code: '200',
-  //     message: '查询成功',
-  //     articles: res1
-  // });
+        // res.send(res1);
+        res.send({
+            code: '200',
+            message: '查询成功',
+            articles: res1
+        });
 
 
     });

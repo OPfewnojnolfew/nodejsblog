@@ -32,11 +32,7 @@ define(function(require, exports, module) {
         initialize: function() {
             this.listenTo(collection, 'sync', this.render);
             $('.primary').html(this.$el);
-            collection.fetch({
-                'data': {
-                    'id': 1
-                }
-            });
+            collection.fetch();
         },
 
         // Re-render the titles of the todo item.
