@@ -1,22 +1,42 @@
-var server = require('./server');
-var router = require('./router');
-var article = require('./article/articleController');
+// var server = require('./server');
+// var router = require('./router');
+// var article = require('./article/articleController');
 
-var handle = {};
-handle['/serve/getArticles'] = article.getArticles;
-handle['/serve/addArticle'] = article.addArticle;
-server.start(router.route, handle);
-
-
+// var handle = {};
+// handle['/serve/getArticles'] = article.getArticles;
+// handle['/serve/addArticle'] = article.addArticle;
+// server.start(router.route, handle);
 
 
 
 
 
-// var http = require('http');
-// var express = require('express');
-// var app = express();
+
+
+var http = require('http');
+var express = require('express');
+var app = express();
+
+app.use('/article',require('./article'));
+
+
+
+
 // var MongoClient = require('mongodb').MongoClient;
+// var router = express.Router();
+
+// router.route('/serve/articles')
+//     .all(function(req, res, next) {
+//         // runs for all HTTP verbs first
+//         // think of it as route specific middleware!
+//     })
+//     .get(function(req, res, next) {
+//         return [{
+//             'id': '1',
+//             'name': 'ace'
+//         }];
+//     });
+
 // app.get('/serve/getArticle', function(req, res) {
 //     MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
 //         if (err) {
@@ -45,4 +65,4 @@ server.start(router.route, handle);
 //         }, function(err, result) {});
 //     });
 // });
-// http.createServer(app).listen('4000', function() {});
+http.createServer(app).listen('4000', function() {});

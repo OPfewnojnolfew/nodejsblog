@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
     var URLS = {
-        GET_ARTICLES: '/serve/getArticles'
+        GET_ARTICLES: '/serve/article/articles'
     };
     var Model = {
         _ajax: function(url, data, type) {

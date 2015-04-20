@@ -1,28 +1,46 @@
-var http = require('http'),
-    mongodbHelper = require('./mongodbHelper');
+var express = require('express'),
+    mongodbHelper = require('./mongodbHelper'),
+    router = express.Router();
 
-function getArticle() {
+router.get('/articles', function(req, res) {
+    console.log('xx');
     var self = this;
-    mongodbHelper.query('article', function(res) {
-        self.send({
+    var id = req.query.id;
+    mongodbHelper.query('article', function(res1) {
+        res.send({
             code: '200',
             message: '查询成功',
-            data: {
-                articleList: res
-            }
+            articles: res1
         });
-    });
-}
 
-function addArticle() {
-    var self = this;
-    mongodbHelper.insert('article', this.request.postData, function() {
-        self.send({
-            code: '200',
-            message: '新增成功',
-            data: {}
-        });
     });
-}
-exports.getArticle = getArticle;
-exports.addArticle = addArticle;
+});
+module.exports = router;
+// var http = require('http'),
+//     mongodbHelper = require('./mongodbHelper');
+
+// function getArticle() {
+//     var self = this;
+//     mongodbHelper.query('article', function(res) {
+//         self.send({
+//             code: '200',
+//             message: '查询成功',
+//             data: {
+//                 articleList: res
+//             }
+//         });
+//     });
+// }
+
+// function addArticle() {
+//     var self = this;
+//     mongodbHelper.insert('article', this.request.postData, function() {
+//         self.send({
+//             code: '200',
+//             message: '新增成功',
+//             data: {}
+//         });
+//     });
+// }
+// exports.getArticle = getArticle;
+// exports.addArticle = addArticle;
